@@ -1,6 +1,6 @@
 // Will Convert Some Processing Functions to built-in Java ones, like min(), import math and other utils as well
 
-class Matrix {
+public class Matrix {
   float mat[][];
   int rows, cols;
   float prev_angle, curr_angle;
