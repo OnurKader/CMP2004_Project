@@ -42,7 +42,7 @@ public class Matrix {
     }
     return this;
   }
-  
+
   Matrix add(float val) {
     for (int y=0; y < rows; y++) {
       for (int x=0; x < cols; x++) {
@@ -51,7 +51,7 @@ public class Matrix {
     }
     return this;
   }
-  
+
   Matrix sub(Matrix other) {
     for (int y=0; y < rows; y++) {
       for (int x=0; x < cols; x++) {
@@ -60,7 +60,7 @@ public class Matrix {
     }
     return this;
   }
-  
+
   Matrix sub(float val) {
     for (int y=0; y < rows; y++) {
       for (int x=0; x < cols; x++) {
@@ -69,7 +69,7 @@ public class Matrix {
     }
     return this;
   }
-  
+
   //Parametric Multiplication
   Matrix mult(Matrix other) {
     Matrix result = new Matrix(this.rows, other.cols);
@@ -119,12 +119,12 @@ public class Matrix {
     float r_angle = curr_angle - prev_angle;
     Matrix transform = new Matrix(2, 2);
     float[][] tri = {{cos(r_angle), sin(r_angle)}, {sin(r_angle), -cos(r_angle)}};
-    transform.set(tri); 
+    transform.set(tri);
     if (this.cols == 1 && this.rows == 2) {
       transform.mult(this);
       this.mat = new float[2][1];
       this.mat[0][0] = transform.mat[0][0];
-      this.mat[1][0] = -transform.mat[1][0]; 
+      this.mat[1][0] = -transform.mat[1][0];
       result = new PVector(this.mat[0][0], this.mat[1][0]);
     } else {
       println("Cannot rotate a non-vector Matrix");
@@ -137,7 +137,6 @@ public class Matrix {
   Matrix(Matrix other) {
     this.set(other.mat);
   }
-
 
   Matrix transpose() {
     Matrix temp = new Matrix(this.cols, this.rows);
@@ -164,7 +163,7 @@ public class Matrix {
     int size = min(this.cols, this.rows);
     Matrix id = new Matrix(size, size);
 
-    for (int i=0; i < size; i++) 
+    for (int i=0; i < size; i++)
       id.mat[i][i] = 1;
 
     this.mat = new float[size][size];
@@ -181,7 +180,7 @@ public class Matrix {
     int row = input.length;
     int col = input[0].length;
     int i;
-    int error[] = new int[row];   
+    int error[] = new int[row];
     float temp[] = new float[input[0].length];
     this.mat = new float[row][col];
     //Check if all columns are filled
@@ -239,31 +238,31 @@ public class Matrix {
   void x(float a){
   this.mat[0][0] = a;
   }
-  
+
   void y(float a){
   this.mat[1][0] = a;
   }
 
   void swap_rows(int i, int j) {
-    float[] temp = this.mat[i]; 
+    float[] temp = this.mat[i];
     this.mat[i] = this.mat[j];
     this.mat[j] = temp;
   }
 
   void swap_2d(float arr[][], int i, int j) {
-    float[] temp = arr[i]; 
+    float[] temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
   }
 
   void swap_1d(float arr[], int i, int j) {
-    float temp = arr[i]; 
+    float temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
   }
 
   void swap_1d(int arr[], int i, int j) {
-    int temp = arr[i]; 
+    int temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
   }
@@ -300,29 +299,29 @@ public class Matrix {
     }
   }
 
-  void getCofactor(float mat[][], float temp[][], int p, int q, int n) 
-  { 
-    int i = 0, j = 0; 
-    for (int y = 0; y < n; y++) 
-    { 
-      for (int x = 0; x < n; x++) 
-      { 
-        if (y != p && x != q) 
-        { 
-          temp[i][j++] = mat[y][x]; 
+  void getCofactor(float mat[][], float temp[][], int p, int q, int n)
+  {
+    int i = 0, j = 0;
+    for (int y = 0; y < n; y++)
+    {
+      for (int x = 0; x < n; x++)
+      {
+        if (y != p && x != q)
+        {
+          temp[i][j++] = mat[y][x];
 
           if (j == n - 1)
-          { 
-            j = 0; 
+          {
+            j = 0;
             i++;
           }
         }
       }
     }
-  } 
+  }
 
-  float determinantOfMatrix(float matr[][], int n) 
-  { 
+  float determinantOfMatrix(float matr[][], int n)
+  {
     float D = 0.0;
     if (n == 1)
       return matr[0][0];
@@ -333,7 +332,7 @@ public class Matrix {
     float temp[][] = new float[this.rows][this.rows];
     int sign = 1;
 
-    for (int i = 0; i < n; i++) 
+    for (int i = 0; i < n; i++)
     {
       getCofactor(matr, temp, 0, i, n);
       D += sign * matr[0][i] * determinantOfMatrix(temp, n - 1);
@@ -344,7 +343,7 @@ public class Matrix {
 
   float determinant() {
     if (this.cols != this.rows) {
-      println("Cannot take the determinant of a non-square matrix!"); 
+      println("Cannot take the determinant of a non-square matrix!");
       return -1;
     } else {
       return determinantOfMatrix(this.mat, this.rows);
@@ -361,7 +360,7 @@ public class Matrix {
     for (int i=0; i<n; ++i)
     {
       float c1 = 0;
-      for (int j=0; j<n; ++j) 
+      for (int j=0; j<n; ++j)
       {
         float c0 = Math.abs(a[i][j]);
         if (c0 > c1) c1 = c0;
@@ -369,14 +368,14 @@ public class Matrix {
       c[i] = c1;
     }
     int k = 0;
-    for (int j=0; j<n-1; ++j) 
+    for (int j=0; j<n-1; ++j)
     {
       float pi1 = 0;
-      for (int i=j; i<n; ++i) 
+      for (int i=j; i<n; ++i)
       {
         float pi0 = abs(a[index[i]][j]);
         pi0 /= c[index[i]];
-        if (pi0 > pi1) 
+        if (pi0 > pi1)
         {
           pi1 = pi0;
           k = i;
@@ -405,7 +404,7 @@ public class Matrix {
     b.identity();
     int index[] = new int[n];
 
-    for (int i=0; i<n; ++i) 
+    for (int i=0; i<n; ++i)
       b.mat[i][i] = 1;
 
     gaussian(a.mat, index);
@@ -418,10 +417,10 @@ public class Matrix {
     for (int i=0; i<n; ++i)
     {
       x[n-1][i] = b.mat[index[n-1]][i]/a.mat[index[n-1]][n-1];
-      for (int j=n-2; j>=0; --j) 
+      for (int j=n-2; j>=0; --j)
       {
         x[j][i] = b.mat[index[j]][i];
-        for (int k=j+1; k<n; ++k) 
+        for (int k=j+1; k<n; ++k)
         {
           x[j][i] -= a.mat[index[j]][k]*x[k][i];
         }
@@ -448,7 +447,7 @@ public class Matrix {
   }
 
   void show() {
-    println("x : " + this.x()); 
+    println("x : " + this.x());
     println("y : " + this.y());
   }
 }
