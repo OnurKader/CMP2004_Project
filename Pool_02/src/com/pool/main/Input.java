@@ -15,22 +15,21 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener, M
 	private final int NUM_OF_KEYS = 256;
 	private boolean keys[] = new boolean[NUM_OF_KEYS];
 	private boolean keys_last[] = new boolean[NUM_OF_KEYS];
-	
+
 	private final int NUM_OF_BUTTONS = 5;
 	private boolean buttons[] = new boolean[NUM_OF_BUTTONS];
 	private boolean buttons_last[] = new boolean[NUM_OF_BUTTONS];
 
 	private int mouseX, mouseY, scroll;
-	
-	
+
+
 	public Input(Game game) {
 		this.game = game;
 		mouseX = mouseY = scroll = 0;
 		game.get_window().get_canvas().addKeyListener(this);
 		game.get_window().get_canvas().addMouseListener(this);
 		game.get_window().get_canvas().addMouseMotionListener(this);
-		
-		
+		game.get_window().get_canvas().addMouseWheelListener(this);
 	}
 	
 	public void update() {

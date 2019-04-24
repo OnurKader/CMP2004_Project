@@ -12,8 +12,8 @@ public class Game implements Runnable
 	private final int width = 1280, height = 720;
 	private final float scale = 1.0f;
 	private String title = "3-Ball Pool";
-	
-	
+
+
 	public String get_title() { return title; }
 
 	public void set_title(String title) { this.title = title; }
@@ -23,9 +23,9 @@ public class Game implements Runnable
 	public int get_height() { return height; }
 
 	public Window get_window() { return window; }
-	
+
 	public float get_scale() { return scale; }
-	
+
 	public Input get_input() { return input; }
 
 	public Game(AbstractGame game) {
@@ -56,12 +56,14 @@ public class Game implements Runnable
 		int frames = 0;
 		int fps = 0;
 		
+		renderer.clear();
+		
 		while(running) {
 			first_time = System.nanoTime() / 1.0e9d;
 			passed_time = first_time - last_time;
 			last_time = first_time;
 			
-			render = false;
+//			render = false;
 			
 			unprocessed_time += passed_time;
 			frame_time += passed_time;
@@ -84,10 +86,9 @@ public class Game implements Runnable
 			}
 			
 			if(render) {
-				renderer.clear();
 				game.render(this, renderer);
 				frames++;
-				renderer.draw_text("FPS: " + fps, get_width() - 60, get_height() - 20, 0xFF07FAFB);
+				renderer.draw_text("FPS: " + fps, get_width() - 200, get_height() - 42, 0xFF07FAFB, 3);
 				window.update();
 			}
 			else {
@@ -105,7 +106,6 @@ public class Game implements Runnable
 		
 	}
 
-	
 	
 
 }

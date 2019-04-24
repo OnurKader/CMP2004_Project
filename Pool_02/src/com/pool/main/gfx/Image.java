@@ -26,7 +26,6 @@ public class Image
 		height = image.getHeight();
 		pixels = image.getRGB(0, 0, width, height, null, 0, width);
 		image.flush();
-		
 	}
 
 	public int get_width() { return width; }
